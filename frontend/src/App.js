@@ -6,7 +6,6 @@ function App() {
   const [translatedText, setTranslatedText] = useState("");
   const [originalText, setOriginalText] = useState("");
 
-  // Actualiza este dominio según tu URL en Render
   const API_URL = "https://traductordeiidimasporsilabas.onrender.com/api";
 
   const handleTranslate = async () => {
@@ -59,13 +58,13 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         <h1>Traductor al idioma Pa-Pe-Pi-Po-Pu</h1>
-        <div className="comment-box">
+      </header>
+      <div className="translation-container">
+        <div className="input-container">
           <textarea
-            rows="4"
-            cols="50"
-            placeholder="Escribe tu texto aquí..."
+            placeholder="Escribe aquí el texto..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
@@ -76,23 +75,21 @@ function App() {
             </button>
           </div>
         </div>
-
-        <h2>Texto Traducido:</h2>
-        <div className="result-box">
-          <p>{translatedText}</p>
-          <button onClick={() => copyToClipboard(translatedText)}>
-            Copiar texto traducido
-          </button>
+        <div className="result-container">
+          <div className="result-box">
+            <h2>Texto Traducido</h2>
+            <p>{translatedText || "El texto traducido aparecerá aquí..."}</p>
+            <button onClick={() => copyToClipboard(translatedText)}>
+              Copiar
+            </button>
+          </div>
+          <div className="result-box">
+            <h2>Texto Original</h2>
+            <p>{originalText || "El texto original aparecerá aquí..."}</p>
+            <button onClick={() => copyToClipboard(originalText)}>Copiar</button>
+          </div>
         </div>
-
-        <h2>Texto Original:</h2>
-        <div className="result-box">
-          <p>{originalText}</p>
-          <button onClick={() => copyToClipboard(originalText)}>
-            Copiar texto original
-          </button>
-        </div>
-      </header>
+      </div>
     </div>
   );
 }
